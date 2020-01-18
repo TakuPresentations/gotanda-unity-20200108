@@ -16,6 +16,8 @@ public class BalanceBoardController : SingletonBehaviour<BalanceBoardController>
 
     private float ResetGameTimeSecond = 0f;
 
+    public Action<Vector2, Vector4> OnRidingWeightSreeem = null;
+
     void Start()
     {
         connectingBalanceBoardIndex = GetBalanceBoardConnectingIndex();
@@ -36,6 +38,10 @@ public class BalanceBoardController : SingletonBehaviour<BalanceBoardController>
                 bool beforeIsRide = IsRide;
                 IsRide = totalWeight > RideThreasoldWeight;
                 if(IsRide){
+                    if(OnRidingWeightSreeem != null)
+                    {
+                        OnRidingWeightSreeem(theCenter, theBalanceBoard);
+                    }
                     ResetGameTimeSecond = 0f;
                     if (Mathf.Abs(topBottomDiff) > (totalWeight * TriggerThreasoldRate))
                     {
@@ -47,15 +53,8 @@ public class BalanceBoardController : SingletonBehaviour<BalanceBoardController>
                     {
                     }
                 }
-                else if(beforeIsRide || ResetGameTimeSecond > 0f)
-                {
-                    ResetGameTimeSecond = ResetGameTimeSecond + Time.deltaTime;
-                }
                 break;
             }
-        }
-        if(ResetGameTimeSecond > 60f)
-        {
         }
     }
 
