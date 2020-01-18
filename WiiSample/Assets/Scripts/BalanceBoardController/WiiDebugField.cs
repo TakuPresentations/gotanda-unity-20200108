@@ -42,16 +42,13 @@ public class WiiDebugField : MonoBehaviour
     }
 
     public void OnForwardButtonClicked() {
-        TaikoController.Instance.GoForward(1.0f);
     }
 
     public void OnBackButtonClicked()
     {
-        TaikoController.Instance.MoveBack(1.0f);
     }
 
     public void OnStopButtonClicked()
     {
-        TaikoController.Instance.StopTaiko();
     }
 }

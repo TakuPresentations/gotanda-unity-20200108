@@ -40,14 +40,11 @@ public class BalanceBoardController : SingletonBehaviour<BalanceBoardController>
                     if (Mathf.Abs(topBottomDiff) > (totalWeight * TriggerThreasoldRate))
                     {
                         if(topBottomDiff > 0){
-                            TaikoController.Instance.GoForward(Mathf.Abs(topBottomDiff) / topWeight);
                         }else{
-                            TaikoController.Instance.MoveBack(Mathf.Abs(topBottomDiff) / topWeight);
                         }
                     }
                     else
                     {
-                        TaikoController.Instance.StopTaiko();
                     }
                 }
                 else if(beforeIsRide || ResetGameTimeSecond > 0f)
@@ -59,7 +56,6 @@ public class BalanceBoardController : SingletonBehaviour<BalanceBoardController>
         }
         if(ResetGameTimeSecond > 60f)
         {
-            TaikoController.Instance.ResetTaiko();
         }
     }
 
